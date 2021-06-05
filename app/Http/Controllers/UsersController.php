@@ -7,14 +7,16 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $users = User::query()
+            ->orderBy('name', 'ASC')
+            ->paginate();
+
+        return view('users.index', [
+            'users' => $users
+        ]);
     }
 
     /**

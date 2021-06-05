@@ -7,14 +7,16 @@ use Illuminate\Http\Request;
 
 class RoomsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $rooms = Room::query()
+            ->orderBy('created_at', 'ASC')
+            ->paginate();
+
+        return view('rooms.index', [
+            'rooms' => $rooms
+        ]);
     }
 
     /**

@@ -4,17 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Review extends Model
+class RoomUser extends Pivot
 {
-    //protected $dates = [];
 
     use HasFactory;
     protected $guarded = [];
 
-    public function roomuser()
+    public function review()
     {
-        return $this->hasOne(RoomUser::class);
+        return $this->hasOne(Review::class);
     }
-
 }

@@ -7,7 +7,7 @@
     <td class="text-right">
 
         <a href="" class="btn btn-outline-secondary btn-sm"><span class="oi oi-eye"></span></a>
-        <a href="" class="btn btn-outline-secondary btn-sm"><span class="oi oi-pencil"></span></a>
+        <a href="{{route('users.edit', ['user' => $user])}}" class="btn btn-outline-secondary btn-sm"><span class="oi oi-pencil"></span></a>
 
     </td>
 </tr>

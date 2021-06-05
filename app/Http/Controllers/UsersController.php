@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -11,7 +13,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::query()
-            ->orderBy('name', 'ASC')
+            ->orderBy('created_at', 'DESC')
             ->paginate();
 
         return view('users.index', [
@@ -24,9 +26,11 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(User $user)
     {
-        //
+        return view('users.create', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -35,9 +39,11 @@ class UsersController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        //
+        $request->createUser();
+
+        return redirect()->route('users.index');
     }
 
     /**
@@ -59,7 +65,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.edit', ['user'=> $user]);
     }
 
     /**
@@ -69,9 +75,11 @@ class UsersController extends Controller
      * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $request->updateUser($user);
+
+        return redirect()->route('users.index');
     }
 
     /**

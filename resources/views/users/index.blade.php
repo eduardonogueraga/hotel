@@ -3,10 +3,13 @@
 @section('title', 'Usuarios')
 
 @section('content')
+    <br>
+    <br>
+    <br>
     <div class="d-flex justify-content-between align-items-end mb-3">
         <h1 class="pb-1">{{trans('users.title.index')}}</h1>
         <p>
-            <a href="" class="btn btn-primary">Nuevo equipo</a>
+            <a href="{{route('users.create')}}" class="btn btn-primary">Nuevo usuario</a>
         </p>
     </div>
 

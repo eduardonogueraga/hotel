@@ -10,7 +10,11 @@ class User extends Model
     //protected $dates = [];
 
     use HasFactory;
-    protected $guarded = ['password'];
+    protected $guarded = [];
+
+    protected $hidden = [
+        'password',
+    ];
 
     public function rooms()
     {

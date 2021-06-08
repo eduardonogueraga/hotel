@@ -5,19 +5,24 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use App\Sortable;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
 
-    public function index()
+    public function index(Sortable $sortable)
     {
         $users = User::query()
+            ->applyFilters()
             ->orderBy('created_at', 'DESC')
             ->paginate();
 
+        $sortable->appends($users->parameters());
+
         return view('users.index', [
-            'users' => $users
+            'users' => $users,
+            'sortable' => $sortable,
         ]);
     }
 

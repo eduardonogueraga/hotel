@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RoomsController extends Controller
@@ -11,11 +12,30 @@ class RoomsController extends Controller
     public function index()
     {
         $rooms = Room::query()
+            ->with('users', 'user')
+            ->whereHas('users', function ($query){
+                $query->where('price', '=', 50);
+            })
+            ->withTV()
+            ->withReservationPrice()
+            ->withCountReservations()
+            ->applyFilters()
             ->orderBy('created_at', 'ASC')
+            ->when(request('internet'), function ($query, $var) {
+                if ($var == 'true') {
+                    $query->withInternet();
+                }
+            })
             ->paginate();
 
         return view('rooms.index', [
-            'rooms' => $rooms
+            'rooms' => $rooms,
+            'owners' => User::query()
+                    ->with('room')
+                    ->whereHas('room', function ($query){
+                        return $query->where('has_tv', '>', '0');
+                    })
+                    ->get()
         ]);
     }
 

@@ -8,7 +8,7 @@
 
     </div>
 
-    {{--    @includeWhen($view=='index','teams._filters')--}}
+     @include('rooms._filters')
 
     @if ($rooms->isNotEmpty())
 
@@ -21,6 +21,8 @@
                     <th scope="col">Tipo habitacion</th>
                     <th scope="col">Camas</th>
                     <th scope="col">Baños</th>
+                    <th scope="col">TV</th>
+                    <th scope="col">Propietario</th>
                     <th scope="col">Direccion</th>
                     <th scope="col">Price</th>
                     <th scope="col" class="text-right th-actions">Acciones</th>

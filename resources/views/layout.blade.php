@@ -80,7 +80,7 @@
 
 <footer class="footer mt-auto py-3">
     <div class="container">
-        <span class="text-muted">AIRBNB</span>
+        <span class="text-muted">Footer</span>
     </div>
 </footer>
 
@@ -103,15 +103,6 @@
         locale: 'es-es',
         weekStartDay: 1,
     });
-    $('#finish_date').datepicker({
-        uiLibrary: 'bootstrap4',
-        format: 'dd/mm/yyyy',
-        locale: 'es-es',
-        weekStartDay: 1,
-    });
 </script>
-
-
-
 </body>
 </html>

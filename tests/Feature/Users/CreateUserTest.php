@@ -34,9 +34,10 @@ class CreateUserTest extends TestCase
             ->post(route('users.store', $this->withData))
             ->assertRedirect(route('users.index'));
 
-        $this->assertDatabaseHas('users',[ //Ver como meterlo en credentials
+        $this->assertCredentials([
             'name'=> 'Antonio Prueba',
             'email'=> 'antonio@mail.es',
+            'password'=>  '1234',
             'phone_number'=> '98212456',
             'description'=> 'Descripcion de antonio',
         ]);

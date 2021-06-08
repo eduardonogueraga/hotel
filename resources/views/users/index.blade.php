@@ -3,9 +3,6 @@
 @section('title', 'Usuarios')
 
 @section('content')
-    <br>
-    <br>
-    <br>
     <div class="d-flex justify-content-between align-items-end mb-3">
         <h1 class="pb-1">{{trans('users.title.index')}}</h1>
         <p>
@@ -13,7 +10,7 @@
         </p>
     </div>
 
-{{--    @includeWhen($view=='index','teams._filters')--}}
+   @include('users._filters')
 
     @if ($users->isNotEmpty())
 
@@ -22,7 +19,7 @@
                 <thead class="thead-dark">
                 <tr>
                     <th scope="col"># <span class="oi oi-caret-bottom"></span><span class="oi oi-caret-top"></span></th>
-                    <th scope="col">Nombre</th>
+                    <th scope="col"><a href="{{ $sortable->url('nombre') }}" class="{{ $sortable->classes('nombre') }}">Nombre</a></th>
                     <th scope="col">Email</th>
                     <th scope="col">Telefono</th>
                     <th scope="col" class="text-right th-actions">Acciones</th>
